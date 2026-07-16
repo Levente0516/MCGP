@@ -1,7 +1,7 @@
-function [] = visual(L,H,u)
+function [] = visual(L,H,u,Dx,Dy)
 
-x = linspace(0,L,100);
-y = linspace(0,H,100);
+x = linspace(0,L,Dx);
+y = linspace(0,H,Dy);
 
 [X,Y] = meshgrid(x,y);
 

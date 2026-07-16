@@ -3,6 +3,8 @@
 L = 2;
 H = 1;
 N = 10;
+Dx = L * 100;
+Dy = H * 100;
 
 BC.bal.type = "D";
 BC.jobb.type = "D";
@@ -19,15 +21,17 @@ BC.jobb.homogen = true;
 BC.also.homogen = false;
 BC.felso.homogen = true;
 
-u = LaplaceSolver(L,H,N,BC);
+u = LaplaceSolver(L,H,N,BC,Dx,Dy);
 
-visual(L,H,u)
+visual(L,H,u,Dx,Dy)
 
 %% Example 12.3.4
 
 L = 2;
 H = 1; 
 N = 10;
+Dx = L * 100;
+Dy = H * 100;
 
 BC.bal.type = "N";
 BC.jobb.type = "N";
@@ -44,9 +48,9 @@ BC.jobb.homogen = true;
 BC.also.homogen = true;
 BC.felso.homogen = false;
 
-u = LaplaceSolver(L,H,N,BC);
+u = LaplaceSolver(L,H,N,BC,Dx,Dy);
 
-visual(L,H,u)
+visual(L,H,u,Dx,Dy)
 
 
 %% Example 12.3.6
@@ -54,6 +58,8 @@ visual(L,H,u)
 L = 2;
 H = 1; 
 N = 10;
+Dx = L * 100;
+Dy = H * 100;
 
 BC.bal.type = "D";
 BC.jobb.type = "N";
@@ -70,15 +76,17 @@ BC.jobb.homogen = true;
 BC.also.homogen = true;
 BC.felso.homogen = true;
 
-u = LaplaceSolver(L,H,N,BC);
+u = LaplaceSolver(L,H,N,BC,Dx,Dy);
 
-visual(L,H,u)
+visual(L,H,u,Dx,Dy)
 
 %% Example 12.3.8
 
 L = 2;
 H = 1; 
 N = 10;
+Dx = L * 100;
+Dy = H * 100;
 
 BC.bal.type = "N";
 BC.jobb.type = "N";
@@ -95,6 +103,6 @@ BC.jobb.homogen = false;
 BC.also.homogen = true;
 BC.felso.homogen = true;
 
-u = LaplaceSolver(L,H,N,BC);
+u = LaplaceSolver(L,H,N,BC,Dx,Dy);
 
-visual(L,H,u)
+visual(L,H,u,Dx,Dy)

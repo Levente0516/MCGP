@@ -1,7 +1,7 @@
-function u = LaplaceSolver(L,H,N,BC)
+function u = LaplaceSolver(L,H,N,BC,Dx,Dy)
 
-x = linspace(0,L,100);
-y = linspace(0,H,100);
+x = linspace(0,L,Dx);
+y = linspace(0,H,Dy);
 
 [X,Y] = meshgrid(x,y);
 
