@@ -1,0 +1,19 @@
+function [] = visualize(curve)
+
+t = linspace(curve.alpha,curve.beta,curve.div);
+
+x = curve.x(t);
+y = curve.y(t);
+
+hold on;
+plot(x,y)
+axis equal tight
+grid on
+
+if  curve.boundary(1).type == "D"
+    tt = linspace(curve.boundary(1).alpha, ...
+        curve.boundary(1).beta, curve.div);
+    plot(x,y)
+
+hold off;
+end

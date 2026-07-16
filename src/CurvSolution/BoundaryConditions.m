@@ -1,0 +1,5 @@
+function [] = BoundaryConditions(curve)
+
+
+
+end
