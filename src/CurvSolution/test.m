@@ -21,5 +21,5 @@ curve.boundary(2).value = 0;
 
 curve.bounds = 2;
 
-BoundaryConditions(curve)
+%Solver(curve)
 visualize(curve)

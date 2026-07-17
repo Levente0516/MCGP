@@ -1,5 +1,0 @@
-function [] = BoundaryConditions(curve)
-
-
-
-end
