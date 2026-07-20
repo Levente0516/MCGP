@@ -1,65 +1,38 @@
-function [boundary, boundaryType] = createGrid(problem)
+function [geometry] = createGrid(problem)
 
 xx = linspace(min(problem.x), max(problem.x), problem.div);
 yy = linspace(min(problem.y), max(problem.y), problem.div);
 
 [X,Y] = meshgrid(xx,yy);
 
-bx = [];
-by = [];
-btype = [];
+[inside, on] = inpolygon(X,Y,problem.x,problem.y);
 
-inside = inpolygon(X,Y,problem.x,problem.y);
+boundary = false(size(X));
 
-boundaryType = zeros(size(X));
-
-% 0 = nem perem, 1 = Dirichlet, 2 = Neumann
-
-
-%A szokszög élein mintavételezés
-for k = 1:length(problem.x)-1
-
-    newx = linspace(problem.x(k),problem.x(k+1),problem.div);
-    newy = linspace(problem.y(k),problem.y(k+1),problem.div);
-    
-    bx = [bx newx];
-    by = [by newy];
-
-    if problem.boundary(k).type == 'D'
-
-        btype = [btype ones(1,length(newx))];
-
-    elseif problem.boundary(k).type == 'N'
-
-        btype = [btype 2*ones(1,length(newx))];
-
+for i = 2:size(X,1)-1
+    for j = 2:size(X,2)-1
+        if inside(i,j) && ~on(i,j)
+            if ~inside(i-1,j)
+                boundary(i-1,j) = true;
+            end
+            if  ~inside(i+1,j)
+                boundary(i+1,j) = true;
+            end
+            if ~inside(i,j-1)
+                boundary(i,j-1) = true;
+            end
+            if ~inside(i,j+1)
+                boundary(i,j+1) = true;
+            end
+        end
     end
-
 end
 
-sdf = inf(size(X));
+boundary(on) = true;
 
-for k = 1:length(bx)
-
-    d = (X-bx(k)).^2 + (Y-by(k)).^2;
-
-    mask = d < sdf;
-
-    sdf(mask) = d(mask);
-
-    boundaryType(mask) = btype(k);
-
-end
-
-sdf = sqrt(sdf);
-
-hx = xx(2) - xx(1);
-hy = yy(2) - yy(1);
-
-tol = max(hx,hy);
-
-boundary = sdf < tol;
-
-boundaryType(~inside & ~boundary) = 0;
+geometry.X = X;
+geometry.Y = Y;
+geometry.inside = inside;
+geometry.boundary = boundary;
 
 end

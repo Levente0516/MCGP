@@ -1,34 +1,19 @@
-function [] = visualize(problem,boundary,boundaryType)
+function [] = visualize(problem,geometry)
 
 clf;
 
-xx = linspace(min(problem.x), max(problem.x), problem.div);
-yy = linspace(min(problem.y), max(problem.y), problem.div);
-
-[X,Y] = meshgrid(xx,yy);
-
-
 hold on
 
-% teljes grid
-plot(X(:), Y(:), '.b');
+plot(geometry.X(:), geometry.Y(:), '.b');
 
-% Dirichlet pontok
-D = boundaryType == 1;
+plot(problem.x, problem.y, 'y-', 'LineWidth', 1);
 
-scatter(X(D), Y(D), 20, 'r');
-
-
-% Neumann pontok
-N = boundaryType == 2;
-
-scatter(X(N), Y(N), 20, 'g');
-
-scatter(X(boundary), Y(boundary), 20, 'magenta');
+scatter(geometry.X(geometry.boundary), ...
+    geometry.Y(geometry.boundary), 20, 'r');
 
 
 % alakzat pereme
-plot(problem.x, problem.y, 'w-', 'LineWidth', 2);
+
 
 axis equal tight
 hold off
