@@ -24,6 +24,8 @@ N = boundaryType == 2;
 
 scatter(X(N), Y(N), 20, 'g');
 
+scatter(X(boundary), Y(boundary), 20, 'magenta');
+
 
 % alakzat pereme
 plot(problem.x, problem.y, 'w-', 'LineWidth', 2);
