@@ -1,4 +1,4 @@
-function [grid] = createGrid(problem)
+function [grid] = createGridApprox(problem)
 
 xx = linspace(min(problem.x), max(problem.x), problem.div);
 yy = linspace(min(problem.y), max(problem.y), problem.div);
