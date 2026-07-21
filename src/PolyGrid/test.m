@@ -10,7 +10,7 @@ problem.div = 10;
 %problem.boundary(1).type = 'D';
 %problem.boundary(1).value = 0;
 
-grid1 = createGrid(problem);
+grid1 = createGridApprox(problem);
 
 grid2 = createGridMoving(problem);
 
@@ -36,7 +36,7 @@ problem.y = [0,1,0,-2,0];
 
 problem.div = 10;
 
-grid1 = createGrid(problem);
+grid1 = createGridApprox(problem);
 
 grid2 = createGridMoving(problem);
 
@@ -49,7 +49,7 @@ problem.y = [0,-1,0,-2,0];
 
 problem.div = 10;
 
-grid1 = createGrid(problem);
+grid1 = createGridApprox(problem);
 
 grid2 = createGridMoving(problem);
 
@@ -62,7 +62,7 @@ problem.y = [0,-2,-2.5,-1,-1.3, 1, 0];
 
 problem.div = 10;
 
-grid1 = createGrid(problem);
+grid1 = createGridApprox(problem);
 
 grid2 = createGridMoving(problem);
 
