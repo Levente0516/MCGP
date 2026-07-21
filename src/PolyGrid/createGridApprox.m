@@ -1,4 +1,4 @@
-function [geometry] = createGrid(problem)
+function [grid] = createGrid(problem)
 
 xx = linspace(min(problem.x), max(problem.x), problem.div);
 yy = linspace(min(problem.y), max(problem.y), problem.div);
@@ -30,9 +30,9 @@ end
 
 boundary(on) = true;
 
-geometry.X = X;
-geometry.Y = Y;
-geometry.inside = inside;
-geometry.boundary = boundary;
+grid.X = X;
+grid.Y = Y;
+grid.inside = inside;
+grid.boundary = boundary;
 
 end

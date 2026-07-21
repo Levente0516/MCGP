@@ -1,0 +1,2 @@
+- createMovingGrid -> moving inside or outside points to boundary
+- fix legend
