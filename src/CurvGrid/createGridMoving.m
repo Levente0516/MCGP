@@ -18,58 +18,59 @@ for i = 2:size(X,1)-1
     for j = 2:size(X,2)-1
 
         if inside(i,j) && ~on(i,j)
-
-            intersections = [];
-
+            
             if ~inside(i-1,j)
                 [xi,yi] = polyxpoly( ...
                     [X(i,j), X(i-1,j)], ...
                     [Y(i,j), Y(i-1,j)], ...
                     x, y);
-
-                intersections = [intersections; xi(:), yi(:)];
+                if ~isempty(xi)
+                    d = hypot(xi-X(i-1,j), yi-Y(i-1,j));
+                    [~,id] = min(d);
+                    X(i-1,j)=xi(id);
+                    Y(i-1,j)=yi(id);
+                    boundary(i-1,j)=true;
+                end
             end
-
             if ~inside(i+1,j)
                 [xi,yi] = polyxpoly( ...
                     [X(i,j), X(i+1,j)], ...
                     [Y(i,j), Y(i+1,j)], ...
                     x, y);
-
-                intersections = [intersections; xi(:), yi(:)];
+                if ~isempty(xi)
+                    d = hypot(xi-X(i+1,j), yi-Y(i+1,j));
+                    [~,id] = min(d);
+                    X(i+1,j)=xi(id);
+                    Y(i+1,j)=yi(id);
+                    boundary(i+1,j)=true;
+                end
             end
-
             if ~inside(i,j-1)
                 [xi,yi] = polyxpoly( ...
                     [X(i,j), X(i,j-1)], ...
                     [Y(i,j), Y(i,j-1)], ...
                     x, y);
-
-                intersections = [intersections; xi(:), yi(:)];
+                if ~isempty(xi)
+                    d = hypot(xi-X(i,j-1), yi-Y(i,j-1));
+                    [~,id] = min(d);
+                    X(i,j-1)=xi(id);
+                    Y(i,j-1)=yi(id);
+                    boundary(i,j-1)=true;
+                end
             end
-
             if ~inside(i,j+1)
                 [xi,yi] = polyxpoly( ...
                     [X(i,j), X(i,j+1)], ...
                     [Y(i,j), Y(i,j+1)], ...
                     x, y);
-
-                intersections = [intersections; xi(:), yi(:)];
+                if ~isempty(xi)
+                    d = hypot(xi-X(i,j+1), yi-Y(i,j+1));
+                    [~,id] = min(d);
+                    X(i,j+1)=xi(id);
+                    Y(i,j+1)=yi(id);
+                    boundary(i,j+1)=true;
+                end
             end
-
-            if ~isempty(intersections)
-                d = hypot( ...
-                    intersections(:,1)-X(i,j), ...
-                    intersections(:,2)-Y(i,j));
-            
-                [~,id] = min(d);
-            
-                X(i,j)=intersections(id,1);
-                Y(i,j)=intersections(id,2);
-            
-                boundary(i,j)=true;
-            end
-
         end
     end
 end

@@ -2,19 +2,17 @@
 
 problem.x = [0,1,2,2,1,0,0];
 problem.y = [0,0.5,0,-1,-1.5,-1,0];
-
-problem.div = 20;
+    
+problem.div = 10;
 
 %problem.boundary(1).x = [0,1]; 
 %problem.boundary(1).y = [0,0.5];
 %problem.boundary(1).type = 'D';
 %problem.boundary(1).value = 0;
 
-grid1 = createGridApprox(problem);
+[points, tri] = createMesh(problem);
 
-grid2 = createGridMoving(problem);
-
-visualize(problem,grid1,grid2);
+visualize(problem,points, tri);
 
 %% Háromszög
 
@@ -23,11 +21,9 @@ problem.y = [0,1,0,0];
 
 problem.div = 10;
 
-grid1 = createGridApprox(problem);
+[points, tri] = createMesh(problem);
 
-grid2 = createGridMoving(problem);
-
-visualize(problem,grid1,grid2);
+visualize(problem,points, tri);
 
 %% konvex deltoid
 
@@ -36,11 +32,9 @@ problem.y = [0,1,0,-2,0];
 
 problem.div = 10;
 
-grid1 = createGridApprox(problem);
+[points, tri] = createMesh(problem);
 
-grid2 = createGridMoving(problem);
-
-visualize(problem,grid1,grid2);
+visualize(problem,points, tri);
 
 %% konkáv deltoid
 
@@ -49,11 +43,9 @@ problem.y = [0,-1,0,-2,0];
 
 problem.div = 10;
 
-grid1 = createGridApprox(problem);
+[points, tri] = createMesh(problem);
 
-grid2 = createGridMoving(problem);
-
-visualize(problem,grid1,grid2);
+visualize(problem,points, tri);
 
 %% random sokszög
 
@@ -62,8 +54,6 @@ problem.y = [0,-2,-2.5,-1,-1.3, 1, 0];
 
 problem.div = 10;
 
-grid1 = createGridApprox(problem);
+[points, tri] = createMesh(problem);
 
-grid2 = createGridMoving(problem);
-
-visualize(problem,grid1,grid2);
+visualize(problem,points, tri);

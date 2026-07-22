@@ -9,7 +9,7 @@ plot(grid1.X(:), grid1.Y(:), '.b');
 plot(problem.x, problem.y, 'y-', 'LineWidth', 1);
 
 scatter(grid1.X(grid1.boundary), ...
-    grid1.Y(grid1.boundary), 20, 'r');
+    grid1.Y(grid1.boundary), 20, 'r', 'filled');
 
 axis equal tight
 
@@ -29,7 +29,7 @@ plot(grid2.X(:), grid2.Y(:), '.b');
 plot(problem.x, problem.y, 'y-', 'LineWidth', 1);
 
 scatter(grid2.X(grid2.boundary), ...
-    grid2.Y(grid2.boundary), 20, 'r');
+    grid2.Y(grid2.boundary), 20, 'r', 'filled');
 
 axis equal tight
 
