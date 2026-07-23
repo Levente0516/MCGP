@@ -3,7 +3,7 @@
 problem.x = [0,1,2,2,1,0,0];
 problem.y = [0,0.5,0,-1,-1.5,-1,0];
     
-problem.div = 10;
+problem.div = 50;
 
 %problem.boundary(1).x = [0,1]; 
 %problem.boundary(1).y = [0,0.5];

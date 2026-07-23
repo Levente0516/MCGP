@@ -1,7 +1,7 @@
 function [grid] = createGridApprox(problem)
 
-xx = linspace(min(problem.x), max(problem.x), problem.div);
-yy = linspace(min(problem.y), max(problem.y), problem.div);
+xx = linspace(min(problem.x), max(problem.x), problem.div.x);
+yy = linspace(min(problem.y), max(problem.y), problem.div.y);
 
 [X,Y] = meshgrid(xx,yy);
 

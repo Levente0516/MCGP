@@ -3,7 +3,8 @@
 problem.x = [0,1,2,2,1,0,0];
 problem.y = [0,0.5,0,-1,-1.5,-1,0];
 
-problem.div = 20;
+problem.div.x = 20;
+problem.div.y = 20;
 
 %problem.boundary(1).x = [0,1]; 
 %problem.boundary(1).y = [0,0.5];
@@ -21,7 +22,8 @@ visualize(problem,grid1,grid2);
 problem.x = [0,1,2,0];
 problem.y = [0,1,0,0];
 
-problem.div = 10;
+problem.div.x = 20;
+problem.div.y = 20;
 
 grid1 = createGridApprox(problem);
 
@@ -34,7 +36,8 @@ visualize(problem,grid1,grid2);
 problem.x = [0,1,2,1,0];
 problem.y = [0,1,0,-2,0];
 
-problem.div = 10;
+problem.div.x = 20;
+problem.div.y = 20;
 
 grid1 = createGridApprox(problem);
 
@@ -47,7 +50,8 @@ visualize(problem,grid1,grid2);
 problem.x = [0,1,2,1,0];
 problem.y = [0,-1,0,-2,0];
 
-problem.div = 10;
+problem.div.x = 20;
+problem.div.y = 20;
 
 grid1 = createGridApprox(problem);
 
@@ -60,7 +64,8 @@ visualize(problem,grid1,grid2);
 problem.x = [0,0.5,1,0.5,2.5, 0.2, 0];
 problem.y = [0,-2,-2.5,-1,-1.3, 1, 0];
 
-problem.div = 10;
+problem.div.x = 20;
+problem.div.y = 20;
 
 grid1 = createGridApprox(problem);
 

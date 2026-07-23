@@ -89,7 +89,7 @@ problem.y = @(t) ...
 problem.alpha = 0;
 problem.beta = 2*pi;
 
-problem.div = 20;
+problem.div = 40;
 
 [points, tri] = createMesh(problem);
 

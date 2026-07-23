@@ -8,16 +8,14 @@ t(end) = [];
 x = problem.x(t);
 y = problem.y(t);
 
-points = [x(:), y(:)];
+size(x)
+size(y)
 
-[~, idx] = unique(points,'rows','stable');
+P = unique([x' y'],'rows','stable');
 
-x = x(idx);
-y = y(idx);
+n = numel(x);
 
-n = length(x);
-
-gd = [2; n; x; y];
+gd = [2; n; x(:); y(:)];
 
 ns = char('P1');
 ns = ns';
