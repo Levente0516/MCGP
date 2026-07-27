@@ -13,42 +13,16 @@ for i = 1:size(u,1)
             x = grid.X(i,j);
             y = grid.Y(i,j);
             for k = 1:length(problem.boundary)
-                if problem.type == "Poly"
-                    if x >= min(problem.boundary(k).x) ...
-                            && x <= max(problem.boundary(k).x) ...
-                            && y >= min(problem.boundary(k).y) ...
-                            && y <=  max(problem.boundary(k).y)
-                        if problem.boundary(k).type == 'D'
-                            u(i,j) = problem.boundary(k).value(x,y);
-                        end
-                        if problem.boundary(k).type == 'N'
-                           neum(i,j) = true;
-                           neumID(i,j) = k;
-                        end
+                if x >= min(problem.boundary(k).x) ...
+                        && x <= max(problem.boundary(k).x) ...
+                        && y >= min(problem.boundary(k).y) ...
+                        && y <=  max(problem.boundary(k).y)
+                    if problem.boundary(k).type == 'D'
+                        u(i,j) = problem.boundary(k).value(x,y);
                     end
-                end
-                if problem.type == "Curv"
-                    t = linspace(problem.boundary(k).alpha,...
-                        problem.boundary(k).beta, problem.div);
-                    
-                    cx = problem.x(t);
-                    cy = problem.y(t);
-                
-                    dist = sqrt((cx-x).^2+(cy-y).^2);
-                
-                    tolerance = max(hx,hy)*0.5;
-                    
-                    if min(dist) < tolerance
-                
-                        if problem.boundary(k).type == 'D'
-                            u(i,j)=problem.boundary(k).value(x,y);
-                        end
-                
-                        if problem.boundary(k).type == 'N'
-                            neum(i,j)=true;
-                            neumID(i,j)=k;
-                        end
-                
+                    if problem.boundary(k).type == 'N'
+                       neum(i,j) = true;
+                       neumID(i,j) = k;
                     end
                 end
             end

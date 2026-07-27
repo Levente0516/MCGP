@@ -5,8 +5,6 @@
 
 clear;
 
-problem.type = "Poly";
-
 L = 2;
 H = 1;
 
@@ -40,21 +38,19 @@ problem.iteration = 1000;
 
 problem.omega = 1.9;
 
-grid1 = PolyGrid.createGridApprox(problem);
+grid1 = createGridApprox(problem);
 
-grid2 = PolyGrid.createGridMoving(problem);
+grid2 = createGridMoving(problem);
 
-u1 = GridSolution.Solution(grid1, problem);
+u1 = Solution(grid1, problem);
 
-u2 = GridSolution.Solution(grid2, problem);
+u2 = Solution(grid2, problem);
 
-GridSolution.visualize(u1,u2,grid1,grid2);
+visualize(u1,u2,grid1,grid2);
 
 %% Rotated rectangle (Example 12.3.2 Rotated)
 
 clear;
-
-problem.type = "Poly";
 
 L = 2;
 H = 1;
@@ -119,23 +115,19 @@ problem.boundary(4).value = @(x,y) ...
     - 3*L*((x-cx)*cos(theta)+(y-cy)*sin(theta)+cx) ...
     + 2*L^2);
 
-grid1 = PolyGrid.createGridApprox(problem);
+grid1 = createGridApprox(problem);
 
-grid2 = PolyGrid.createGridMoving(problem);
+grid2 = createGridMoving(problem);
 
-u1 = GridSolution.Solution(grid1, problem);
+u1 = Solution(grid1, problem);
 
-u2 = GridSolution.Solution(grid2, problem);
+u2 = Solution(grid2, problem);
 
-GridSolution.visualize(u1,u2,grid1,grid2);
-
-%PolyGrid.visualize(problem,grid1,grid2);
+visualize(u1,u2,grid1,grid2);
 
 %% Rectangle W Neumann boundary conds. (Example 12.3.4)
 
 clear;
-
-problem.type = "Poly";
 
 L = 2;
 H = 1;
@@ -174,21 +166,19 @@ problem.iteration = 1000;
 
 problem.omega = 1.9;
 
-grid1 = PolyGrid.createGridApprox(problem);
+grid1 = createGridApprox(problem);
 
-grid2 = PolyGrid.createGridMoving(problem);
+grid2 = createGridMoving(problem);
 
-u1 = GridSolution.Solution(grid1, problem);
+u1 = Solution(grid1, problem);
 
-u2 = GridSolution.Solution(grid2, problem);
+u2 = Solution(grid2, problem);
 
-GridSolution.visualize(u1,u2,grid1,grid2);
+visualize(u1,u2,grid1,grid2);
 
 %% Example 12.3.6
 
 clear;
-
-problem.type = "Poly";
 
 L = 2;
 H = 1;
@@ -227,21 +217,19 @@ problem.iteration = 1000;
 
 problem.omega = 1.9;
 
-grid1 = PolyGrid.createGridApprox(problem);
+grid1 = createGridApprox(problem);
 
-grid2 = PolyGrid.createGridMoving(problem);
+grid2 = createGridMoving(problem);
 
-u1 = GridSolution.Solution(grid1, problem);
+u1 = Solution(grid1, problem);
 
-u2 = GridSolution.Solution(grid2, problem);
+u2 = Solution(grid2, problem);
 
-GridSolution.visualize(u1,u2,grid1,grid2);
+visualize(u1,u2,grid1,grid2);
 
 %% Example 12.3.8
 
 clear;
-
-problem.type = "Poly";
 
 L = 2;
 H = 1;
@@ -280,22 +268,20 @@ problem.iteration = 1000;
 
 problem.omega = 1.9;
 
-grid1 = PolyGrid.createGridApprox(problem);
+grid1 = createGridApprox(problem);
 
-grid2 = PolyGrid.createGridMoving(problem);
+grid2 = createGridMoving(problem);
 
-u1 = GridSolution.Solution(grid1, problem);
+u1 = Solution(grid1, problem);
 
-u2 = GridSolution.Solution(grid2, problem);
+u2 = Solution(grid2, problem);
 
-GridSolution.visualize(u1,u2,grid1,grid2);
+visualize(u1,u2,grid1,grid2);
 
 
 %% Hatszög 
 
 clear;
-
-problem.type = "Poly";
 
 problem.x = [0,1,2,2,1,0,0];
 problem.y = [0,0.5,0,-1,-1.5,-1,0];
@@ -337,21 +323,19 @@ problem.iteration = 1000;
 
 problem.omega = 1.9;
 
-grid1 = PolyGrid.createGridApprox(problem);
+grid1 = createGridApprox(problem);
 
-grid2 = PolyGrid.createGridMoving(problem);
+grid2 = createGridMoving(problem);
 
-u1 = GridSolution.Solution(grid1, problem);
+u1 = Solution(grid1, problem);
 
-u2 = GridSolution.Solution(grid2, problem);
+u2 = Solution(grid2, problem);
 
-GridSolution.visualize(u1,u2,grid1,grid2);
+visualize(u1,u2,grid1,grid2);
 
 %% Háromszög
 
 clear;
-
-problem.type = "Poly";
 
 problem.x = [0,1,2,0];
 problem.y = [0,1,0,0];
@@ -378,55 +362,12 @@ problem.iteration = 1000;
 
 problem.omega = 1.9;
 
-grid1 = PolyGrid.createGridApprox(problem);
+grid1 = createGridApprox(problem);
 
-grid2 = PolyGrid.createGridMoving(problem);
+grid2 = createGridMoving(problem);
 
-u1 = GridSolution.Solution(grid1, problem);
+u1 = Solution(grid1, problem);
 
-u2 = GridSolution.Solution(grid2, problem);
+u2 = Solution(grid2, problem);
 
-GridSolution.visualize(u1,u2,grid1,grid2);
-
-%% Curvs
-
-TODO
-
-%% Kör
-
-clear;
-
-problem.type = "Curv";
-
-problem.x = @(t) cos(t);
-problem.y = @(t) sin(t);
-
-problem.alpha = 0;
-problem.beta = 2*pi;
-
-problem.boundary(1).alpha = 0; 
-problem.boundary(1).beta = pi;
-problem.boundary(1).type = 'D';
-problem.boundary(1).value = @(x,y) 1;
-
-problem.boundary(2).alpha = pi; 
-problem.boundary(2).beta = 2*pi;
-problem.boundary(2).type = 'D';
-problem.boundary(2).value = @(x,y) 0;
-
-
-problem.div = 200;
-
-problem.iteration = 1000;
-
-problem.omega = 1.9;
-
-grid1 = CurvGrid.createGridApprox(problem);
-
-grid2 = CurvGrid.createGridMoving(problem);
-
-u1 = GridSolution.Solution(grid1, problem);
-
-u2 = GridSolution.Solution(grid2, problem);
-
-GridSolution.visualize(u1,u2,grid1,grid2);
+visualize(u1,u2,grid1,grid2);
