@@ -31,22 +31,13 @@ problem.boundary(4).y = [0,0];
 problem.boundary(4).type = 'D';
 problem.boundary(4).value = @(x,y) x.*(x.^2 - 3*L*x + 2*L^2);
 
-problem.div.x = L * 100;
-problem.div.y = H * 100;
+problem.div = 50;
 
-problem.iteration = 100;
+[points, tri] = createMesh(problem);
 
-problem.omega = 1.9;
+u = Solution(problem, points, tri);
 
-grid1 = createGridApprox(problem);
-
-grid2 = createGridMoving(problem);
-
-u1 = Solution(grid1, problem);
-
-u2 = Solution(grid2, problem);
-
-visualize(u1,u2,grid1,grid2);
+visualize(problem, points, tri, u);
 
 %% Rotated rectangle (Example 12.3.2 Rotated)
 
@@ -89,12 +80,7 @@ problem.boundary(4).y = [0,0];
 problem.boundary(4).type = 'D';
 problem.boundary(4).value = @(x,y) x.*(x.^2 - 3*L*x + 2*L^2);
 
-problem.div.x = L * 100;
-problem.div.y = H * 100;
-
-problem.iteration = 1000;
-
-problem.omega = 1.9;
+problem.div = 50;
 
 rotate = @(x,y) deal( ...
     (x-cx)*cos(theta)-(y-cy)*sin(theta)+cx, ...
@@ -115,15 +101,11 @@ problem.boundary(4).value = @(x,y) ...
     - 3*L*((x-cx)*cos(theta)+(y-cy)*sin(theta)+cx) ...
     + 2*L^2);
 
-grid1 = createGridApprox(problem);
+[points, tri] = createMesh(problem);
 
-grid2 = createGridMoving(problem);
+u = Solution(problem, points, tri);
 
-u1 = Solution(grid1, problem);
-
-u2 = Solution(grid2, problem);
-
-visualize(u1,u2,grid1,grid2);
+visualize(problem, points, tri, u);
 
 %% Rectangle W Neumann boundary conds. (Example 12.3.4)
 
@@ -134,6 +116,8 @@ H = 1;
 
 problem.x = [0,0,L,L,0];
 problem.y = [0,H,H,0,0];
+
+problem.div = 50;
 
 %left
 problem.boundary(1).x = [0,0];
@@ -159,22 +143,11 @@ problem.boundary(4).y = [0,0];
 problem.boundary(4).type = 'D';
 problem.boundary(4).value = @(x,y) 0;
 
-problem.div.x = L * 100;
-problem.div.y = H * 100;
+[points, tri] = createMesh(problem);
 
-problem.iteration = 1000;
+u = Solution(problem, points, tri);
 
-problem.omega = 1.9;
-
-grid1 = createGridApprox(problem);
-
-grid2 = createGridMoving(problem);
-
-u1 = Solution(grid1, problem);
-
-u2 = Solution(grid2, problem);
-
-visualize(u1,u2,grid1,grid2);
+visualize(problem, points, tri, u);
 
 %% Example 12.3.6
 
@@ -185,6 +158,8 @@ H = 1;
 
 problem.x = [0,0,L,L,0];
 problem.y = [0,H,H,0,0];
+
+problem.div = 50;
 
 %left
 problem.boundary(1).x = [0,0];
@@ -210,22 +185,11 @@ problem.boundary(4).y = [0,0];
 problem.boundary(4).type = 'D';
 problem.boundary(4).value = @(x,y) 0;
 
-problem.div.x = L * 100;
-problem.div.y = H * 100;
+[points, tri] = createMesh(problem);
 
-problem.iteration = 1000;
+u = Solution(problem, points, tri);
 
-problem.omega = 1.9;
-
-grid1 = createGridApprox(problem);
-
-grid2 = createGridMoving(problem);
-
-u1 = Solution(grid1, problem);
-
-u2 = Solution(grid2, problem);
-
-visualize(u1,u2,grid1,grid2);
+visualize(problem, points, tri, u);
 
 %% Example 12.3.8
 
@@ -236,6 +200,8 @@ H = 1;
 
 problem.x = [0,0,L,L,0];
 problem.y = [0,H,H,0,0];
+
+problem.div = 50;
 
 %left
 problem.boundary(1).x = [0,0];
@@ -261,22 +227,11 @@ problem.boundary(4).y = [0,0];
 problem.boundary(4).type = 'N';
 problem.boundary(4).value = @(x,y) 0;
 
-problem.div.x = L * 100;
-problem.div.y = H * 100;
+[points, tri] = createMesh(problem);
 
-problem.iteration = 1000;
+u = Solution(problem, points, tri);
 
-problem.omega = 1.9;
-
-grid1 = createGridApprox(problem);
-
-grid2 = createGridMoving(problem);
-
-u1 = Solution(grid1, problem);
-
-u2 = Solution(grid2, problem);
-
-visualize(u1,u2,grid1,grid2);
+visualize(problem, points, tri, u);
 
 
 %% Hatszög 
@@ -286,8 +241,7 @@ clear;
 problem.x = [0,1,2,2,1,0,0];
 problem.y = [0,0.5,0,-1,-1.5,-1,0];
 
-problem.div.x = 200;
-problem.div.y = 200;
+problem.div = 50;
 
 problem.boundary(1).x = [0,1]; 
 problem.boundary(1).y = [0,0.5];
@@ -319,19 +273,11 @@ problem.boundary(6).y = [-1,0];
 problem.boundary(6).type = 'N';
 problem.boundary(6).value = @(x,y) 0;
 
-problem.iteration = 1000;
+[points, tri] = createMesh(problem);
 
-problem.omega = 1.9;
+u = Solution(problem, points, tri);
 
-grid1 = createGridApprox(problem);
-
-grid2 = createGridMoving(problem);
-
-u1 = Solution(grid1, problem);
-
-u2 = Solution(grid2, problem);
-
-visualize(u1,u2,grid1,grid2);
+visualize(problem, points, tri, u);
 
 %% Háromszög
 
@@ -340,8 +286,7 @@ clear;
 problem.x = [0,1,2,0];
 problem.y = [0,1,0,0];
 
-problem.div.x = 200;
-problem.div.y = 200;
+problem.div = 50;
 
 problem.boundary(1).x = [0,1]; 
 problem.boundary(1).y = [0,1];
@@ -358,16 +303,8 @@ problem.boundary(3).y = [0,0];
 problem.boundary(3).type = 'D';
 problem.boundary(3).value = @(x,y) 0;
 
-problem.iteration = 1000;
+[points, tri] = createMesh(problem);
 
-problem.omega = 1.9;
+u = Solution(problem, points, tri);
 
-grid1 = createGridApprox(problem);
-
-grid2 = createGridMoving(problem);
-
-u1 = Solution(grid1, problem);
-
-u2 = Solution(grid2, problem);
-
-visualize(u1,u2,grid1,grid2);
+visualize(problem, points, tri, u);
