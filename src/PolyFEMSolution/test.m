@@ -31,7 +31,7 @@ problem.boundary(4).y = [0,0];
 problem.boundary(4).type = 'D';
 problem.boundary(4).value = @(x,y) x.*(x.^2 - 3*L*x + 2*L^2);
 
-problem.div = 50;
+problem.div = 10;
 
 [points, tri] = createMesh(problem);
 
@@ -295,7 +295,7 @@ problem.boundary(1).value = @(x,y) 0;
 
 problem.boundary(2).x = [1,2]; 
 problem.boundary(2).y = [1,0];
-problem.boundary(2).type = 'D';
+problem.boundary(2).type = 'N';
 problem.boundary(2).value = @(x,y) x.*(2*x + 4);
 
 problem.boundary(3).x = [2,0]; 

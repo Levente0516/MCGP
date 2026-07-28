@@ -54,100 +54,83 @@ for e = 1:size(tri,1)
 
 end
 
-for i = 1:N
+boundaryEdges = findBoundaryEdges(points,tri,problem);
 
-    x = points(i,1);
-    y = points(i,2);
-
-    for k = 1:length(problem.boundary)
-        
-        xb = problem.boundary(k).x;
-        yb = problem.boundary(k).y;
+for e=1:size(boundaryEdges.nodes,1)
 
 
-        if onSegment(x,y,xb(1),yb(1),xb(2),yb(2))
+    nodes=boundaryEdges.nodes(e,:);
 
-            boundaryNodes(i)=true;
 
-        end
+    id=boundaryEdges.id(e);
+
+    if problem.boundary(id).type=='N'
+
+
+        i=nodes(1);
+        j=nodes(2);
+
+
+        x1=points(i,1);
+        y1=points(i,2);
+
+        x2=points(j,1);
+        y2=points(j,2);
+
+
+        L=hypot(x2-x1,y2-y1);
+
+
+        g1=problem.boundary(id).value(x1,y1);
+        g2=problem.boundary(id).value(x2,y2);
+
+
+
+        Fe=L/6*[
+            2*g1+g2
+            g1+2*g2
+        ];
+
+
+        F(i)=F(i)+Fe(1);
+        F(j)=F(j)+Fe(2);
+
 
     end
-    
-end
 
-for k=1:length(problem.boundary)
+    if problem.boundary(id).type=='D'
 
 
-    type = problem.boundary(k).type;
+        nodes=boundaryEdges.nodes(e,:);
 
 
-    xb = problem.boundary(k).x;
-    yb = problem.boundary(k).y;
+        for n=nodes
 
-    nodes=[];
+            x=points(n,1);
+            y=points(n,2);
 
 
-    for i=1:N
+            value=problem.boundary(id).value(x,y);
 
-        if onSegment(points(i,1),points(i,2),...
-                xb(1),yb(1),xb(2),yb(2))
 
-            nodes(end+1)=i;
+            F=F-K(:,n)*value;
+
+
+            K(:,n)=0;
+            K(n,:)=0;
+
+            K(n,n)=1;
+
+            F(n)=value;
+
 
         end
-
-    end
-
-    if type=='D'
-
-
-        for i=nodes
-
-            x=points(i,1);
-            y=points(i,2);
-
-
-            value = problem.boundary(k).value(x,y);
-
-
-            K(i,:)=0;
-            K(i,i)=1;
-
-            F(i)=value;
-
-        end
-
-    elseif type=='N'
-
-        L = sqrt((xb(2)-xb(1))^2 + ...
-                 (yb(2)-yb(1))^2);
-
-        xm=(xb(1)+xb(2))/2;
-        ym=(yb(1)+yb(2))/2;
-
-
-        g = problem.boundary(k).value(xm,ym);
-
-
-        tol = 1e-10;
-        
-        n1 = find(abs(points(:,1)-xb(1)) < tol & ...
-                  abs(points(:,2)-yb(1)) < tol);
-        
-        n2 = find(abs(points(:,1)-xb(2)) < tol & ...
-                  abs(points(:,2)-yb(2)) < tol);
-
-
-        F(n1)=F(n1)+g*L/2;
-        F(n2)=F(n2)+g*L/2;
 
 
     end
 
 end
-
 
 u = K\F;
-
 
 end
