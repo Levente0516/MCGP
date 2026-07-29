@@ -10,7 +10,9 @@ problem.div = 20;
 
 [points, tri] = createMesh(problem);
 
-visualize(problem,points, tri);
+u = Solution(problem, points, tri);
+
+visualize(problem, points, tri, u);
 
 %% Ellipszis
 
