@@ -24,19 +24,48 @@ Ntotal = size(points,1);
 
 fprintf("Boundary points: %d\n", Nb);
 
-epsilon = problem.epsilon;
+c = problem.c;
 
-phi = @(r) exp(-(epsilon*r).^2);
 
-% 2D Laplace
-lapPhi = @(r) ...
-    4*epsilon^2 .* (epsilon^2*r.^2 - 1) ...
-    .* exp(-(epsilon*r).^2);
+switch problem.RBFtype
 
-% Normal derivative of phi
-dPhi_dn = @(xi,xj,n) ...
-    -2*epsilon^2 * dot(xi-xj,n) * phi(norm(xi-xj));
+    case 'G'
 
+        phi = @(r) exp(-(c*r).^2);
+
+        lapPhi = @(r) ...
+            4*c^2 .* (c^2*r.^2 - 1) .* ...
+            exp(-(c*r).^2);
+
+        dPhi_dn = @(xi,xj,n) ...
+            -2*c^2 * dot(xi-xj,n) * ...
+            phi(norm(xi-xj));
+
+
+    case 'M'
+
+        phi = @(r) sqrt(r.^2 + c.^2);
+
+        lapPhi = @(r) ...
+            (r.^2 + 2*c.^2) ./ ...
+            (r.^2 + c.^2).^(3/2);
+
+        dPhi_dn = @(xi,xj,n) ...
+            dot(xi-xj,n) / ...
+            sqrt(norm(xi-xj)^2 + c^2);
+
+
+    case 'S'
+
+        phi = @(r) (r > 0) .* r.^2 .* log(r);
+
+        lapPhi = @(r) 4*log(r) + 4;
+
+        dPhi_dn = @(xi,xj,n) ...
+            (2*log(norm(xi-xj)) + 1) * ...
+            dot(xi-xj,n);
+
+end
 
 A = zeros(Ntotal,Ntotal);
 b = zeros(Ntotal,1);

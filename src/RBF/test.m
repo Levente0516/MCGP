@@ -33,13 +33,18 @@ problem.boundary(4).y = [0,0];
 problem.boundary(4).type = 'D';
 problem.boundary(4).value = @(x,y) x.*(x.^2 - 3*L*x + 2*L^2);
 
-problem.points = 800;
+problem.points = 2000;
 
-% problem.epsilon = 1/sqrt(L*H/problem.points);
+problem.RBFtype = 'M';
+% G = Gaussian
+% M = Multikvadratikus
+% S = Spline
 
-problem.epsilon = 10;
+% problem.c = 1/sqrt(L*H/problem.points);
 
-% disp(problem.epsilon);
+problem.c = 0.5;
+
+% disp(problem.c);
 
 [points,u]  = RBF(problem);
 
@@ -111,7 +116,9 @@ problem.boundary(4).value = @(x,y) ...
 
 problem.points = 1000;
 
-problem.epsilon = 10;
+problem.RBFtype = 'M';
+
+problem.c = 0.5;
 
 [points,u]  = RBF(problem);
 
@@ -155,9 +162,11 @@ problem.boundary(4).y = [0,0];
 problem.boundary(4).type = 'D';
 problem.boundary(4).value = @(x,y) 0;
 
-problem.points = 1000;
+problem.points = 3000;
 
-problem.epsilon = 10;
+problem.RBFtype = 'G';
+
+problem.c = 10;
 
 [points,u]  = RBF(problem);
 
@@ -201,9 +210,11 @@ problem.boundary(4).y = [0,0];
 problem.boundary(4).type = 'D';
 problem.boundary(4).value = @(x,y) 0;
 
-problem.points = 1000;
+problem.points = 3000;
 
-problem.epsilon = 10;
+problem.RBFtype = 'M';
+
+problem.c = 0.5;
 
 [points,u]  = RBF(problem);
 
@@ -249,7 +260,9 @@ problem.boundary(4).value = @(x,y) 0;
 
 problem.points = 1000;
 
-problem.epsilon = 10;
+problem.RBFtype = 'G';
+
+problem.c = 10;
 
 [points,u]  = RBF(problem);
 
@@ -299,7 +312,7 @@ problem.boundary(6).value = @(x,y) 0;
 
 problem.points = 1000;
 
-problem.epsilon = 10;
+problem.c = 10;
 
 [points,u]  = RBF(problem);
 
@@ -333,7 +346,9 @@ problem.boundary(3).value = @(x,y) 0;
 
 problem.points = 1000;
 
-problem.epsilon = 10;
+problem.RBFtype = 'G';
+
+problem.c = 10;
 
 [points,u]  = RBF(problem);
 
@@ -369,9 +384,11 @@ problem.boundary(3).value = @(x,y) 0;
 
 problem.points = 5000;
 
+problem.RBFtype = 'G';
+
 problem.nt = 5000;
 
-problem.epsilon = 10;
+problem.c = 10;
 
 [points,u]  = RBF(problem);
 
@@ -401,9 +418,11 @@ problem.boundary(2).value = @(x,y) 0;
 
 problem.points = 5000;
 
+problem.RBFtype = 'G';
+
 problem.nt = 5000;
 
-problem.epsilon = 10;
+problem.c = 10;
 
 [points,u]  = RBF(problem);
 
@@ -433,9 +452,11 @@ problem.boundary(2).value = @(x,y) 0;
 
 problem.points = 5000;
 
+problem.RBFtype = 'G';
+
 problem.nt = 5000;
 
-problem.epsilon = 10;
+problem.c = 10;
 
 [points,u]  = RBF(problem);
 
@@ -465,9 +486,11 @@ problem.boundary(2).value = @(x,y) 0;
 
 problem.points = 5000;
 
+problem.RBFtype = 'G';
+
 problem.nt = 1000;
 
-problem.epsilon = 20;
+problem.c = 20;
 
 [points,u]  = RBF(problem);
 
@@ -497,9 +520,11 @@ problem.boundary(2).value = @(x,y) 0;
 
 problem.points = 2000;
 
+problem.RBFtype = 'G';
+
 problem.nt = 3000;
 
-problem.epsilon = 17;
+problem.c = 17;
 
 [points,u]  = RBF(problem);
 
@@ -541,9 +566,11 @@ problem.boundary(2).value = @(x,y) 0;
 
 problem.points = 5000;
 
+problem.RBFtype = 'G';
+
 problem.nt = 5000;
 
-problem.epsilon = 10;
+problem.c = 10;
 
 [points,u]  = RBF(problem);
 
