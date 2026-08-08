@@ -1,9 +1,11 @@
 function [boundaryPoints,boundaryType,...
-    boundaryValue,boundaryNormal] = genBoundaryPoints(problem)
+    boundaryValue,boundaryNormal] = genBoundaryPointsPoly(problem)
 
 Nb = length(problem.boundary);
 
-N = problem.points;
+Ninside = problem.points;
+
+N = round(0.5*sqrt(Ninside)*4);
 
 boundaryPoints = zeros(N,2);
 boundaryType = zeros(N,1);

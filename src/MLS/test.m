@@ -34,7 +34,7 @@ problem.gamma = 25;
 
 problem.points = 500;
 
-[points,u]  = MLSSolution(problem);
+[points,u,K]  = MLSSolution(problem);
 
 visualize(points, problem, u);
 

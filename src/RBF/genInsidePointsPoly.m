@@ -1,4 +1,4 @@
-function [insidePoints] = genInsidePoints(problem)
+function [insidePoints] = genInsidePointsPoly(problem)
 
 N = problem.points;
 
